@@ -80,7 +80,10 @@ namespace TestProject
 
             for (int i = 0; i < text.Length; i++)
             {
-                result.Append(text[i] ^ (uint)key[i % key.Length]);
+                // Cast the XOR'd value back to a char so that encrypting and
+                // then decrypting returns the original string.
+                char encryptedChar = (char)(text[i] ^ key[i % key.Length]);
+                result.Append(encryptedChar);
             }
 
             return result.ToString();
